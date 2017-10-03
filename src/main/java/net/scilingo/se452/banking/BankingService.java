@@ -30,8 +30,17 @@ public class BankingService {
 	}
 	
 	public void createNewCustomer(String firstName, String middleInitial, String lastName, Address address) {
-		this._customerService.createCustomer(firstName, middleInitial, lastName, address);
-		//this._mongoCustomerService.createCustomer(firstName, middleInitial, lastName, address;
+		Customer newCustomer = (Customer) this._customerService.createCustomer(firstName, middleInitial, lastName, address);
+		
+		MongoAddress mongoAddress = new MongoAddress();
+		mongoAddress.setAddressLine1(newCustomer.getAddress().getAddressLine1());
+		mongoAddress.setAddressLine2(newCustomer.getAddress().getAddressLine2());
+		mongoAddress.setCounty(newCustomer.getAddress().getCounty());
+		mongoAddress.setCity(newCustomer.getAddressInfo().getCity());
+		mongoAddress.setState(newCustomer.getAddressInfo().getState());
+		mongoAddress.setZipcode(newCustomer.getAddress().getZipcode());
+		
+		this._mongoCustomerService.createCustomer(firstName, middleInitial, lastName, mongoAddress);
 	}
 	
 	public List<Customer> getAllCustomers(){

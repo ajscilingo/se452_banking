@@ -144,7 +144,7 @@ private AddressInfoService _addressInfo;
 	 * @see net.scilingo.se452.banking.ICustomerService#createCustomer(java.lang.String, java.lang.String, java.lang.String, net.scilingo.se452.banking.Address)
 	 */
 	@Override
-	public void createCustomer(String firstName, String middleInitial, String lastName, IAddress address) {
+	public ICustomer createCustomer(String firstName, String middleInitial, String lastName, IAddress address) {
 		
 		EntityTransaction entityTransaction = null;
 		Customer customer = new Customer();
@@ -173,5 +173,7 @@ private AddressInfoService _addressInfo;
 				inner_exception.printStackTrace();
 			}
 		}
+		
+		return customer;
 	}
 }

@@ -6,6 +6,6 @@ public interface ICustomerService {
 
 	void deleteCustomer(ICustomer customer);
 
-	void createCustomer(String firstName, String middleInitial, String lastName, IAddress address);
+	ICustomer createCustomer(String firstName, String middleInitial, String lastName, IAddress address);
 
 }

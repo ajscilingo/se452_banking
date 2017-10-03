@@ -59,7 +59,7 @@ public class DatabaseTest
 		
 		Address address = new Address();
 		address.setAddressLine1("1400 S. State");
-		address.setAddressLine2("");
+		address.setAddressLine2("APT 8-D");
 		address.setCounty("Cook");
 		address.setZipcode(60605);
 		

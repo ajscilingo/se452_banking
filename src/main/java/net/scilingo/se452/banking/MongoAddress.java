@@ -1,6 +1,6 @@
 package net.scilingo.se452.banking;
 
-public class MongoAddress implements IAddress {
+public class MongoAddress implements IAddress, IAddressInfo {
 
 	private String addressLine1;
 	private String addressLine2;
@@ -48,4 +48,26 @@ public class MongoAddress implements IAddress {
 	public void setCounty(String county) {
 		this.county = county;
 	}
+
+	@Override
+	public String getCity() {
+		return city;
+	}
+
+	@Override
+	public String getState() {
+		return state;
+	}
+
+	@Override
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	@Override
+	public void setState(String state) {
+		this.state = state;
+	}
+	
+	
 }

@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity @IdClass(AddressInfoId.class)
 @Table(name = "ADDRESS_INFO")
-public class AddressInfo implements Serializable {
+public class AddressInfo implements IAddressInfo, Serializable {
 
 	private static final long serialVersionUID = -5661826697467263158L;
 	
@@ -36,6 +36,10 @@ public class AddressInfo implements Serializable {
 		return city;
 	}
 
+	public void setCity(String city) {
+		this.city = city;
+	}
+	
 	public String getCounty() {
 		return county;
 	}	
@@ -43,5 +47,8 @@ public class AddressInfo implements Serializable {
 	public String getState() {
 		return state;
 	}
-
+	
+	public void setState(String state) {
+		this.state = state;
+	}
 }

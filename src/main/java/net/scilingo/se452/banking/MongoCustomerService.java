@@ -22,6 +22,8 @@ public class MongoCustomerService implements ICustomerService{
 	private final String ADDRESS = "address";
 	private final String ADDRESS_LINE1 = "addressLine1";
 	private final String ADDRESS_LINE2 = "addressLine2";
+	private final String CITY = "city";
+	private final String STATE = "state";
 	private final String COUNTY = "county";
 	private final String ZIPCODE = "zipcode";
 	
@@ -48,19 +50,14 @@ public class MongoCustomerService implements ICustomerService{
 	}
 
 	@Override
-	public void createCustomer(String firstName, String middleInitial, String lastName, IAddress address) {
+	public ICustomer createCustomer(String firstName, String middleInitial, String lastName, IAddress address) {
 		
 		MongoCustomer customer = new MongoCustomer();
 		customer.setFirstName(firstName);
 		customer.setMiddleInitial(middleInitial);
 		customer.setLastName(lastName);
-		
-		MongoAddress mongoAddress = new MongoAddress();
-		mongoAddress.setAddressLine1(address.getAddressLine1());
-		mongoAddress.setAddressLine2(address.getAddressLine2());
 
-		
-		customer.setAddress(mongoAddress);
+		customer.setAddress(address);
 		
 		logger.log(Level.INFO, "Creating Customer {0} {1} {2} in MongoDB", new String[]{customer.getFirstName(), customer.getMiddleInitial(), customer.getLastName()});
 		
@@ -70,8 +67,14 @@ public class MongoCustomerService implements ICustomerService{
 				.append(LAST_NAME, customer.getLastName())
 				.append(ADDRESS, new Document()
 						.append(ADDRESS_LINE1, customer.getAddress().getAddressLine1())
-						.append(ADDRESS_LINE2, customer.getAddress().getAddressLine2()))
+						.append(ADDRESS_LINE2, customer.getAddress().getAddressLine2())
+						.append(CITY, ((MongoAddress)customer.getAddress()).getCity())
+						.append(STATE, ((MongoAddress)customer.getAddress()).getState())
+						.append(COUNTY, customer.getAddress().getCounty())
+						.append(ZIPCODE, customer.getAddress().getZipcode()))
 				);
+		
+		return customer;
 	}
 
 }
