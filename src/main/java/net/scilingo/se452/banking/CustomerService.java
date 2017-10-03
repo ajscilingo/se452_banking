@@ -15,10 +15,11 @@ public class CustomerService implements ICustomerService {
 
 private EntityManager _entityManager;
 private static final Logger logger = Logger.getLogger(CustomerService.class.getName());
-
+private AddressInfoService _addressInfo;
 	
 	public CustomerService(EntityManager entityManager) {
 		this._entityManager = entityManager;
+		this._addressInfo = new AddressInfoService(entityManager);
 	}
 	
 	public Customer getCustomer(Customer customer) {
@@ -152,6 +153,7 @@ private static final Logger logger = Logger.getLogger(CustomerService.class.getN
 		customer.setMiddleInitial(middleInitial);
 		customer.setLastName(lastName);
 		customer.setAddress((Address)address);
+		customer.setAddressInfo(this._addressInfo.getAddressInfo(customer));
 		
 		try {
 			entityTransaction = _entityManager.getTransaction();

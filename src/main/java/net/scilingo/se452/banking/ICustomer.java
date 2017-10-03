@@ -1,7 +1,5 @@
 package net.scilingo.se452.banking;
 
-import java.util.Set;
-
 public interface ICustomer {
 
 	public int getId();
@@ -14,4 +12,6 @@ public interface ICustomer {
 	public void setMiddleInitial(String middleInitial);
 	public void setLastName(String lastName);
 	public void setAddress(IAddress address);
+	
+	
 }

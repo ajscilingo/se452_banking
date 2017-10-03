@@ -31,7 +31,7 @@ public class BankingService {
 	
 	public void createNewCustomer(String firstName, String middleInitial, String lastName, Address address) {
 		this._customerService.createCustomer(firstName, middleInitial, lastName, address);
-		this._mongoCustomerService.createCustomer(firstName, middleInitial, lastName, address);
+		//this._mongoCustomerService.createCustomer(firstName, middleInitial, lastName, address;
 	}
 	
 	public List<Customer> getAllCustomers(){

@@ -60,8 +60,9 @@ public class DatabaseTest
 		Address address = new Address();
 		address.setAddressLine1("1400 S. State");
 		address.setAddressLine2("");
-		address.setZipcode(60605);
 		address.setCounty("Cook");
+		address.setZipcode(60605);
+		
 		bs.createNewCustomer("Shannon", "J", "Miller", address);
 		
 		Customer shannonMiller = bs.getCustomer("Shannon", "J", "Miller");
@@ -73,9 +74,18 @@ public class DatabaseTest
 		Address address2 = new Address();
 		address2.setAddressLine1("6250 S. Madison");
 		address2.setAddressLine2("");
-		address2.setZipcode(60527);
 		address2.setCounty("Dupage");
+		address2.setZipcode(60521);
+		
 		bs.createNewCustomer("Todd","K","Schmit", address2);
+		
+		Address address3 = new Address();
+		address3.setAddressLine1("1700 S. Michigan");
+		address3.setAddressLine2("APT 704");
+		address3.setCounty("Cook");
+		address3.setZipcode(60605);
+		
+		bs.createNewCustomer("Conrad", "H", "Jones", address3);
 		
 	}
 	
@@ -84,8 +94,10 @@ public class DatabaseTest
 		
 		Customer tedDBehr = getBankingService().getCustomer("Ted", "D", "Behr");
 		Customer shannonJMiller = getBankingService().getCustomer("Shannon", "J", "Miller");
+		Customer conradHJones = getBankingService().getCustomer("Conrad", "H", "Jones");
 		bs.deleteCustomer(tedDBehr);
 		bs.deleteCustomer(shannonJMiller);
+		bs.deleteCustomer(conradHJones);
 
 		em.close();
 		emf.close();

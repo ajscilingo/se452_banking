@@ -21,10 +21,10 @@ public class CustomerTest extends DatabaseTest {
 		assertEquals("E", janeEJones.getMiddleInitial());
 		assertEquals("Jones", janeEJones.getLastName());
 		assertEquals("5701 S. Madison", janeEJones.getAddress().getAddressLine1());
-		assertEquals("Hinsdale", ((Address)janeEJones.getAddress()).getAddressInfo().getCity());
-		assertEquals("Dupage", janeEJones.getAddress().getCounty());
-		assertEquals("Illinois", ((Address)janeEJones.getAddress()).getAddressInfo().getState());
-		assertEquals(60521, janeEJones.getAddress().getZipcode());
+		assertEquals("Hinsdale", janeEJones.getAddressInfo().getCity());
+		assertEquals("Dupage", janeEJones.getAddressInfo().getCounty());
+		assertEquals("Illinois", janeEJones.getAddressInfo().getState());
+		assertEquals(60521, janeEJones.getAddressInfo().getZipcode());
 	}
 	
 	@Test
@@ -35,6 +35,8 @@ public class CustomerTest extends DatabaseTest {
 		assertEquals("Shannon",shannonJMiller.getFirstName());
 		assertEquals("J", shannonJMiller.getMiddleInitial());
 		assertEquals("Miller", shannonJMiller.getLastName());	
+		assertEquals("Chicago", shannonJMiller.getAddressInfo().getCity());
+		assertEquals("Illinois", shannonJMiller.getAddressInfo().getState());
 	}
 	
 	/**

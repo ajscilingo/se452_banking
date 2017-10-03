@@ -56,4 +56,6 @@ public class MongoCustomer implements ICustomer {
 		this.address = (MongoAddress) address;
 	}
 
+	
+
 }

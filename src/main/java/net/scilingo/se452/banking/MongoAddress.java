@@ -4,8 +4,10 @@ public class MongoAddress implements IAddress {
 
 	private String addressLine1;
 	private String addressLine2;
-	private int zipcode;
+	private String city;
+	private String state;
 	private String county;
+	private int zipcode;
 	
 	@Override
 	public String getAddressLine1() {
@@ -33,18 +35,17 @@ public class MongoAddress implements IAddress {
 	}
 
 	@Override
-	public void setZipcode(int zipcode) {
-		this.zipcode = zipcode;
+	public String getCounty() {
+		return county;
 	}
 
 	@Override
-	public String getCounty() {
-		return county;
+	public void setZipcode(int zipcode) {
+		this.zipcode = zipcode;
 	}
 
 	@Override
 	public void setCounty(String county) {
 		this.county = county;
 	}
-
 }

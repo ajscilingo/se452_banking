@@ -58,8 +58,7 @@ public class MongoCustomerService implements ICustomerService{
 		MongoAddress mongoAddress = new MongoAddress();
 		mongoAddress.setAddressLine1(address.getAddressLine1());
 		mongoAddress.setAddressLine2(address.getAddressLine2());
-		mongoAddress.setCounty(address.getCounty());
-		mongoAddress.setZipcode(address.getZipcode());
+
 		
 		customer.setAddress(mongoAddress);
 		
@@ -71,9 +70,7 @@ public class MongoCustomerService implements ICustomerService{
 				.append(LAST_NAME, customer.getLastName())
 				.append(ADDRESS, new Document()
 						.append(ADDRESS_LINE1, customer.getAddress().getAddressLine1())
-						.append(ADDRESS_LINE2, customer.getAddress().getAddressLine2())
-						.append(COUNTY, customer.getAddress().getCounty())
-						.append(ZIPCODE, customer.getAddress().getZipcode()))
+						.append(ADDRESS_LINE2, customer.getAddress().getAddressLine2()))
 				);
 	}
 

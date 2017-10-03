@@ -21,16 +21,12 @@ public class Address implements IAddress, Serializable {
 	@Column(name="ADDRESS_LINE2")
 	private String addressLine2;
 	
-	@Column(name="ZIPCODE")
+	@Column(name= "ZIPCODE")
 	private int zipcode;
 	
-	@Column(name="COUNTY")
+	@Column(name= "COUNTY")
 	private String county;
 	
-	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumns( value = {@JoinColumn(referencedColumnName = "zipcode", name="ZIPCODE", updatable = false, insertable = false),
-				 @JoinColumn(referencedColumnName = "county", name="COUNTY", updatable = false, insertable = false)})
-	private AddressInfo addressInfo;
 	
 	@Override
 	public String getAddressLine1() {
@@ -54,35 +50,27 @@ public class Address implements IAddress, Serializable {
 	
 	@Override
 	public int getZipcode() {
-		return zipcode;
+		return this.zipcode;
 	}
-	
+
+	@Override
+	public String getCounty() {
+		return this.county;
+	}
+
 	@Override
 	public void setZipcode(int zipcode) {
 		this.zipcode = zipcode;
 	}
-	
-	@Override
-	public String getCounty() {
-		return county;
-	}
-	
+
 	@Override
 	public void setCounty(String county) {
 		this.county = county;
 	}
-	
-	public AddressInfo getAddressInfo() {
-		return addressInfo;
-	}
-
-	public void setAddressInfo(AddressInfo addressInfo) {
-		this.addressInfo = addressInfo;
-	}
 
 	@Override
 	public String toString() {
-		return addressLine1.toString() + " " + addressLine2.toString() + " " + addressInfo.getCity() + ", " + addressInfo.getState() + " " + zipcode;
+		return addressLine1.toString() + " " + addressLine2.toString();
 	}
 	
 

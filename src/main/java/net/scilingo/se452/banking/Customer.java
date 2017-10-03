@@ -12,6 +12,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -37,8 +40,14 @@ public class Customer implements ICustomer, Serializable {
 	@Column(name = "L_NAME")
 	private String lastName;
 	
+	
 	@OneToMany(fetch=FetchType.EAGER, mappedBy="customer", cascade=CascadeType.ALL, orphanRemoval=true)
 	private Set<Account> accounts = new HashSet<Account>();
+	
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumns( value = {@JoinColumn(referencedColumnName = "ZIPCODE", name="ZIPCODE", updatable = false, insertable = false, nullable = false),
+				 @JoinColumn(referencedColumnName = "COUNTY", name="COUNTY", updatable = false, insertable = false)})
+	private AddressInfo addressInfo;
 	
 	@Embedded
 	private Address address;
@@ -94,6 +103,14 @@ public class Customer implements ICustomer, Serializable {
 		this.accounts = accounts;
 	}
 
+	public AddressInfo getAddressInfo() {
+		return this.addressInfo;
+	}
+	
+	public void setAddressInfo(AddressInfo addressInfo) {
+		this.addressInfo = addressInfo;
+	}
+	
 	@Override
 	public String toString() {
 		return firstName + " " + middleInitial + " " + lastName;
