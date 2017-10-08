@@ -3,9 +3,6 @@ package net.scilingo.se452.banking;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-import javax.persistence.Query;
-
-import org.junit.Before;
 
 import net.scilingo.se452.banking.Account;
 import net.scilingo.se452.banking.AccountType;

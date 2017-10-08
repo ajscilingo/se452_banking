@@ -31,15 +31,7 @@ public class BankingService {
 	
 	public void createNewCustomer(String firstName, String middleInitial, String lastName, Address address) {
 		Customer newCustomer = (Customer) this._customerService.createCustomer(firstName, middleInitial, lastName, address);
-		
-		MongoAddress mongoAddress = new MongoAddress();
-		mongoAddress.setAddressLine1(newCustomer.getAddress().getAddressLine1());
-		mongoAddress.setAddressLine2(newCustomer.getAddress().getAddressLine2());
-		mongoAddress.setCounty(newCustomer.getAddress().getCounty());
-		mongoAddress.setCity(newCustomer.getAddressInfo().getCity());
-		mongoAddress.setState(newCustomer.getAddressInfo().getState());
-		mongoAddress.setZipcode(newCustomer.getAddress().getZipcode());
-		
+		MongoAddress mongoAddress = createMongoAddress(newCustomer.getAddress(), newCustomer.getAddressInfo());
 		this._mongoCustomerService.createCustomer(firstName, middleInitial, lastName, mongoAddress);
 	}
 	
@@ -79,5 +71,23 @@ public class BankingService {
 	public void updateAccount(Account account) {
 		this._accountService.saveAccount(account);
 	}
-	
+
+	private MongoAddress createMongoAddress(IAddress address, IAddressInfo addressInfo) {
+		
+		MongoAddress mongoAddress = new MongoAddress();
+		
+		if(address != null) {
+			mongoAddress.setAddressLine1(address.getAddressLine1());
+			mongoAddress.setAddressLine2(address.getAddressLine2());
+			mongoAddress.setCounty(address.getCounty());
+			mongoAddress.setZipcode(address.getZipcode());
+		}
+		
+		if(addressInfo != null) {
+			mongoAddress.setCity(addressInfo.getCity());
+			mongoAddress.setState(addressInfo.getState());
+		}
+		
+		return mongoAddress;
+	}
 }
