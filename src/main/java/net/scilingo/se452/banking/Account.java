@@ -18,6 +18,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import net.scilingo.se452.banking.interfaces.IAccount;
+
 @Entity
 @Table(name="ACCOUNT")
 @NamedQuery(name= "getAllAccounts", query= "select a from Account a")

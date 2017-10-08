@@ -4,11 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.FetchType;
-import javax.persistence.ForeignKey;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
-import javax.persistence.ManyToOne;
+
+import net.scilingo.se452.banking.interfaces.IAddress;
 
 @Embeddable
 public class Address implements IAddress, Serializable {

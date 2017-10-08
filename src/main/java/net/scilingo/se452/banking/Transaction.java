@@ -14,6 +14,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import net.scilingo.se452.banking.interfaces.IAccount;
+import net.scilingo.se452.banking.interfaces.ITransaction;
+
 @Entity
 @Table(name="TRANSACTION")
 public class Transaction implements ITransaction, Serializable {

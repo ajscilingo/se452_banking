@@ -1,4 +1,7 @@
-package net.scilingo.se452.banking;
+package net.scilingo.se452.banking.mongodb;
+
+import net.scilingo.se452.banking.interfaces.IAddress;
+import net.scilingo.se452.banking.interfaces.IAddressInfo;
 
 public class MongoAddress implements IAddress, IAddressInfo {
 

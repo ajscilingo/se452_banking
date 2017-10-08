@@ -1,4 +1,4 @@
-package net.scilingo.se452.banking;
+package net.scilingo.se452.banking.mongodb;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

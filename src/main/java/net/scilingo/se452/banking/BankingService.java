@@ -9,6 +9,11 @@ import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.MongoCredential;
 
+import net.scilingo.se452.banking.interfaces.IAddress;
+import net.scilingo.se452.banking.interfaces.IAddressInfo;
+import net.scilingo.se452.banking.mongodb.MongoAddress;
+import net.scilingo.se452.banking.mongodb.MongoCustomerService;
+
 public class BankingService {
 	
 	private final EntityManager _entityManager;

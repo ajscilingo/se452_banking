@@ -1,6 +1,9 @@
-package net.scilingo.se452.banking;
+package net.scilingo.se452.banking.interfaces;
 
 import java.util.Set;
+
+import net.scilingo.se452.banking.AccountType;
+import net.scilingo.se452.banking.Transaction;
 
 public interface IAccount {
 	

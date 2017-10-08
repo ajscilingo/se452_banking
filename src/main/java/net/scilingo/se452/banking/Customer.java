@@ -19,6 +19,9 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import net.scilingo.se452.banking.interfaces.IAddress;
+import net.scilingo.se452.banking.interfaces.ICustomer;
+
 @Entity
 @Table(name="CUSTOMER")
 @NamedQuery(name= "getAllCustomers", query= "select c from Customer c")

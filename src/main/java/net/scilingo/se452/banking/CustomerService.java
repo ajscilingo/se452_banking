@@ -11,6 +11,10 @@ import javax.persistence.Query;
 import javax.persistence.RollbackException;
 import javax.persistence.TransactionRequiredException;
 
+import net.scilingo.se452.banking.interfaces.IAddress;
+import net.scilingo.se452.banking.interfaces.ICustomer;
+import net.scilingo.se452.banking.interfaces.ICustomerService;
+
 public class CustomerService implements ICustomerService {
 
 private EntityManager _entityManager;

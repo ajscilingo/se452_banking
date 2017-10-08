@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
 
+import net.scilingo.se452.banking.interfaces.IAddressInfo;
+
 @Entity @IdClass(AddressInfoId.class)
 @Table(name = "ADDRESS_INFO")
 public class AddressInfo implements IAddressInfo, Serializable {

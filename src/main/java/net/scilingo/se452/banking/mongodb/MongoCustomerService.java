@@ -1,9 +1,14 @@
-package net.scilingo.se452.banking;
+package net.scilingo.se452.banking.mongodb;
 
 import com.mongodb.Block;
 import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
+
+import net.scilingo.se452.banking.interfaces.IAddress;
+import net.scilingo.se452.banking.interfaces.ICustomer;
+import net.scilingo.se452.banking.interfaces.ICustomerService;
+
 import static com.mongodb.client.model.Filters.*;
 
 import java.util.Set;

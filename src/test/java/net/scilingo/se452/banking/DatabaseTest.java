@@ -15,6 +15,7 @@ import com.mongodb.MongoClientURI;
 import net.scilingo.se452.banking.Address;
 import net.scilingo.se452.banking.BankingService;
 import net.scilingo.se452.banking.Customer;
+import net.scilingo.se452.banking.mongodb.MongoPropertiesLoader;
 
 public class DatabaseTest
 {
@@ -92,7 +93,7 @@ public class DatabaseTest
 	@AfterClass
 	public static void tearDownClass(){
 		
-		Customer tedDBehr = getBankingService().getCustomer("Ted", "D", "Behr");
+		Customer tedDBehr = getBankingService().getCustomer("Todd", "K", "Schmit");
 		Customer shannonJMiller = getBankingService().getCustomer("Shannon", "J", "Miller");
 		Customer conradHJones = getBankingService().getCustomer("Conrad", "H", "Jones");
 		bs.deleteCustomer(tedDBehr);
