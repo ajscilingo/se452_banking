@@ -6,6 +6,10 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Bank XYZ Portal App</name>
 	<description>Project for SE 452 Autumn 2017</description>
+	<properties>
+		<powermock.version>1.7.3</powermock.version>
+		<junit.version>4.12</junit.version>
+	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.eclipse.persistence</groupId>
@@ -30,7 +34,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.12</version>
+			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -39,18 +43,24 @@
 			<version>3.5.0</version>
 		</dependency>
 		<dependency>
-			<groupId>org.jmock</groupId>
-			<artifactId>jmock-junit4</artifactId>
-			<version>2.8.3</version>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>1.10.19</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-module-junit4</artifactId>
+			<version>${powermock.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.powermock</groupId>
 			<artifactId>powermock-api-mockito</artifactId>
-			<version>1.7.3</version>
+			<version>${powermock.version}</version>
 			<scope>test</scope>
 		</dependency>
-	</dependencies>
+</dependencies>
 	<build>
 		<plugins>
 			<plugin>

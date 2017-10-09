@@ -20,11 +20,21 @@ public class CustomerService implements ICustomerService {
 private EntityManager _entityManager;
 private static final Logger logger = Logger.getLogger(CustomerService.class.getName());
 private AddressInfoService _addressInfo;
-	
+
+	public CustomerService() {
+		
+	}
+
 	public CustomerService(EntityManager entityManager) {
 		this._entityManager = entityManager;
 		this._addressInfo = new AddressInfoService(entityManager);
 	}
+	
+	public void setEntityManager(EntityManager entityManager) {
+		this._entityManager = entityManager;
+		this._addressInfo = new AddressInfoService(entityManager);
+	}
+	
 	
 	public Customer getCustomer(Customer customer) {
 		
