@@ -15,7 +15,7 @@ public class MongoCustomer implements ICustomer {
 	public int getId() {
 		return id;
 	}
-
+ 
 	@Override
 	public String getFirstName() {
 		return firstName;
@@ -31,6 +31,11 @@ public class MongoCustomer implements ICustomer {
 		return lastName;
 	}
 
+	@Override
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	@Override
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;

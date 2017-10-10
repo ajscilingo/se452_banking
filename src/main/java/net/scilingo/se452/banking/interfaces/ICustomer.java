@@ -8,6 +8,7 @@ public interface ICustomer {
 	public String getLastName();
 	public IAddress getAddress();
 	
+	public void setId(int id);
 	public void setFirstName(String firstName);
 	public void setMiddleInitial(String middleInitial);
 	public void setLastName(String lastName);

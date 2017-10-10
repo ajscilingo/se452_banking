@@ -12,6 +12,7 @@ public interface IAccount {
 	public AccountType getAccountType();
 	public Set<Transaction> getTransactions();
 	
+	public void setId(int id);
 	public void setBalance(int balance);
 	public void setAccountType(AccountType accountType);
 	public void setTransactions(Set<Transaction> transactions);

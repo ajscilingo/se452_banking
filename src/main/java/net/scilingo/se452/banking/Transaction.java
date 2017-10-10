@@ -59,6 +59,11 @@ public class Transaction implements ITransaction, Serializable {
 	}
 
 	@Override
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	@Override
 	public void setAccount(IAccount account) {
 		this.account = (Account) account;
 	}

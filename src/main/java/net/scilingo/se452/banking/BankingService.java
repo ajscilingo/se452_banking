@@ -19,6 +19,7 @@ public class BankingService {
 	private final EntityManager _entityManager;
 	private AccountService _accountService;
 	private CustomerService _customerService;
+	private AddressInfoService _addressInfoService;
 	private MongoCustomerService _mongoCustomerService;
 	private final MongoClient _mongoClient;
 	
@@ -30,7 +31,8 @@ public class BankingService {
 		this._entityManager = entityManager;
 		this._mongoClient = mongoClient;
 		this._accountService = new AccountService(_entityManager);
-		this._customerService = new CustomerService(_entityManager);
+		this._addressInfoService = new AddressInfoService(_entityManager);
+		this._customerService = new CustomerService(_entityManager, _addressInfoService);
 		this._mongoCustomerService = new MongoCustomerService(_mongoClient);
 	}
 	

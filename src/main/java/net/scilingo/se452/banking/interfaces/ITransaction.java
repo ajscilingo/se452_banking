@@ -8,6 +8,7 @@ public interface ITransaction {
 	public int getAmount();
 	public java.sql.Date getTime();
 	
+	public void setId(int id);
 	public void setAccount(IAccount account);
 	public void setAmount(int amount);
 	

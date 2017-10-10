@@ -19,22 +19,25 @@ public class CustomerService implements ICustomerService {
 
 private EntityManager _entityManager;
 private static final Logger logger = Logger.getLogger(CustomerService.class.getName());
-private AddressInfoService _addressInfo;
+private AddressInfoService _addressInfoService;
+private static final String queryString = "Select c from Customer c where c.firstName = :firstName and c.middleInitial = :middleInitial and c.lastName = :lastName";
 
 	public CustomerService() {
 		
 	}
 
-	public CustomerService(EntityManager entityManager) {
+	public CustomerService(EntityManager entityManager, AddressInfoService addressInfoService) {
 		this._entityManager = entityManager;
-		this._addressInfo = new AddressInfoService(entityManager);
+		this._addressInfoService = addressInfoService;
 	}
 	
 	public void setEntityManager(EntityManager entityManager) {
 		this._entityManager = entityManager;
-		this._addressInfo = new AddressInfoService(entityManager);
 	}
 	
+	public void setAddressInfoService(AddressInfoService addressInfoService) {
+		this._addressInfoService = addressInfoService;
+	}
 	
 	public Customer getCustomer(Customer customer) {
 		
@@ -54,7 +57,7 @@ private AddressInfoService _addressInfo;
 	}
 	
 	public Customer getCustomer(String firstName, String middleInitial, String lastName) {
-		Query q = _entityManager.createQuery("Select c from Customer c where c.firstName = :firstName and c.middleInitial = :middleInitial and c.lastName = :lastName");
+		Query q = _entityManager.createQuery(queryString);
 		q.setParameter("firstName", firstName);
 		q.setParameter("middleInitial", middleInitial);
 		q.setParameter("lastName", lastName);
@@ -63,7 +66,7 @@ private AddressInfoService _addressInfo;
 	}
 	
 	public List<Customer> getCustomers(String firstName, String middleInitial, String lastName){
-		Query q = _entityManager.createQuery("Select c from Customer c where c.firstName = :firstName and c.middleInitial = :middleInitial and c.lastName = :lastName");
+		Query q = _entityManager.createQuery(queryString);
 		q.setParameter("firstName", firstName);
 		q.setParameter("middleInitial", middleInitial);
 		q.setParameter("lastName", lastName);
@@ -167,7 +170,7 @@ private AddressInfoService _addressInfo;
 		customer.setMiddleInitial(middleInitial);
 		customer.setLastName(lastName);
 		customer.setAddress((Address)address);
-		customer.setAddressInfo(this._addressInfo.getAddressInfo(customer));
+		customer.setAddressInfo(this._addressInfoService.getAddressInfo(customer));
 		
 		try {
 			entityTransaction = _entityManager.getTransaction();

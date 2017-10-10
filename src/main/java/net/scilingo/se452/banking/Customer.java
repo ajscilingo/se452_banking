@@ -59,7 +59,12 @@ public class Customer implements ICustomer, Serializable {
 	public int getId() {
 		return id;
 	}
-
+	
+	@Override
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	@Override
 	public String getFirstName() {
 		return firstName;

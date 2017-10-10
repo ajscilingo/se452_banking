@@ -2,6 +2,9 @@ package net.scilingo.se452.banking;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+
+import java.util.Random;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.mockito.Mockito.times;
@@ -32,13 +35,20 @@ public class CustomerServiceTest {
 	
 	private CustomerService customerService;
 	
-	private final String queryString1 = "Select c from Customer c where c.firstName = :firstName and c.middleInitial = :middleInitial and c.lastName = :lastName";
+	private static final String queryString = "Select c from Customer c where c.firstName = :firstName and c.middleInitial = :middleInitial and c.lastName = :lastName";
+	private static Random randomId;
+	private static final int maxId = 100, minId = 1;
 	
 	@Mock
 	private EntityManager entityManager;
 	
 	@Mock 
 	private Query query;
+	
+	@BeforeClass
+	public static void setUpClass() {
+		randomId = new Random();
+	}
 	
 	@Before
 	public void setUp() {
@@ -52,9 +62,9 @@ public class CustomerServiceTest {
 		
 		Address mockAddress = buildMockAddress("4740 N. County Line Road", "", "Cook", 60521);
 		Customer mockJohnHSmith = buildMockCustomer("John", "H", "Smith", mockAddress);
-		when(entityManager.createQuery(queryString1)).thenReturn(query);
+		when(entityManager.createQuery(queryString)).thenReturn(query);
 		when(customerService.getCustomer("John", "H", "Smith")).thenReturn(mockJohnHSmith);
-		verify(entityManager, times(1)).createQuery(queryString1);
+		verify(entityManager, times(1)).createQuery(queryString);
 		assertEquals("John", mockJohnHSmith.getFirstName());
 		assertEquals("H", mockJohnHSmith.getMiddleInitial());
 		assertEquals("Smith", mockJohnHSmith.getLastName());
@@ -68,7 +78,8 @@ public class CustomerServiceTest {
 		mockedCustomer.setLastName(lastName);
 		mockedCustomer.setMiddleInitial(middleInitial);
 		mockedCustomer.setAddress(address);
-		
+		mockedCustomer.setAddressInfo(buildMockAddressInfo("Hinsdale", "Illinois"));
+		mockedCustomer.setId(randomId.nextInt((maxId - minId) + 1) + minId);
 		return mockedCustomer;
 	}
 	
@@ -80,5 +91,12 @@ public class CustomerServiceTest {
 		mockedAddress.setZipcode(zipcode);
 		
 		return mockedAddress;
+	}
+	
+	private AddressInfo buildMockAddressInfo(String city, String state) {
+		AddressInfo mockedAddressInfo = new AddressInfo();
+		mockedAddressInfo.setCity(city);
+		mockedAddressInfo.setState(state);
+		return mockedAddressInfo;
 	}
 }

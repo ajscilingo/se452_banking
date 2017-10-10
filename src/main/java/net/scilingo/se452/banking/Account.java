@@ -60,6 +60,11 @@ public class Account implements IAccount {
 	public AccountType getAccountType() {
 		return accountType;
 	}
+	
+	@Override
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	@Override
 	public void setBalance(int balance) {
