@@ -19,7 +19,7 @@ public class Address implements IAddress, Serializable {
 	private String addressLine2;
 	
 	@Column(name= "ZIPCODE")
-	private int zipcode;
+	private Integer zipcode;
 	
 	@Column(name= "COUNTY")
 	private String county;
@@ -46,7 +46,7 @@ public class Address implements IAddress, Serializable {
 	}
 	
 	@Override
-	public int getZipcode() {
+	public Integer getZipcode() {
 		return this.zipcode;
 	}
 
@@ -56,7 +56,7 @@ public class Address implements IAddress, Serializable {
 	}
 
 	@Override
-	public void setZipcode(int zipcode) {
+	public void setZipcode(Integer zipcode) {
 		this.zipcode = zipcode;
 	}
 

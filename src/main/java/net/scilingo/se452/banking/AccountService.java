@@ -25,7 +25,7 @@ public class AccountService {
 		Account foundAccount = null;
 
 		try {
-			if (account.getId() > 0) {
+			if (account.getId() != null && account.getId() > 0) {
 				logger.log(Level.INFO, "Finding Account where Id is {0}", account.getId());
 				foundAccount = _entityManager.find(Account.class, account.getId());
 			}
@@ -47,7 +47,9 @@ public class AccountService {
 			Account accountToUpdate;
 			accountToUpdate = getAccount(account);
 
-			if (accountToUpdate != null && accountToUpdate.getId() > 0) {
+			if (accountToUpdate != null 
+					&& accountToUpdate.getId() != null
+					&& accountToUpdate.getId() > 0) {
 				accountToUpdate.setAccountType(account.getAccountType());
 				accountToUpdate.setBalance(account.getBalance());
 				accountToUpdate.setCustomer(account.getCustomer());

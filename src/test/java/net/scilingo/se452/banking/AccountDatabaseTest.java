@@ -25,7 +25,7 @@ public class AccountDatabaseTest extends DatabaseTest {
 			}
 		}
 		
-		assertEquals(200000, savingsAccount.getBalance());
+		assertEquals(Integer.valueOf(200000), savingsAccount.getBalance());
 		
 	}
 	
@@ -50,7 +50,7 @@ public class AccountDatabaseTest extends DatabaseTest {
 			}
 		}
 		
-		assertEquals(previousBalance + 10, checkingAccount.getBalance());	
+		assertEquals(Integer.valueOf(previousBalance + 10), checkingAccount.getBalance());	
 	}
 	
 }

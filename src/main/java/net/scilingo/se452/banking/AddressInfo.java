@@ -18,7 +18,7 @@ public class AddressInfo implements IAddressInfo, Serializable {
 	
 	@Id
 	@Column(name="ZIPCODE", nullable = false)
-	private int zipcode;
+	private Integer zipcode;
 	
 	@Id
 	@Column(name="COUNTY", nullable = false)

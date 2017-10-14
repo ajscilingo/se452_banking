@@ -32,7 +32,7 @@ public class Customer implements ICustomer, Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="ID")
-	private int id;
+	private Integer id;
 	
 	@Column(name = "F_NAME")
 	private String firstName;
@@ -56,12 +56,12 @@ public class Customer implements ICustomer, Serializable {
 	private Address address;
 	
 	@Override
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 	
 	@Override
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	

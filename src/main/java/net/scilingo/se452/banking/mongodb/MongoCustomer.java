@@ -5,14 +5,14 @@ import net.scilingo.se452.banking.interfaces.ICustomer;
 
 public class MongoCustomer implements ICustomer {
 
-	private int id;
+	private Integer id;
 	private String firstName;
 	private String middleInitial;
 	private String lastName;
 	private MongoAddress address;
 	
 	@Override
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
  
@@ -32,7 +32,7 @@ public class MongoCustomer implements ICustomer {
 	}
 
 	@Override
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	

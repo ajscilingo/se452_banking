@@ -6,14 +6,14 @@ public class AddressInfoId implements Serializable{
 
 	private static final long serialVersionUID = 7765594976832577389L;
 	
-	private int zipcode;
+	private Integer zipcode;
 	private String county;
 	
 	public AddressInfoId() {
 		
 	}
 	
-	public AddressInfoId(int zipcode, String county) {
+	public AddressInfoId(Integer zipcode, String county) {
 		this.zipcode = zipcode;
 		this.county = county;
 	}
@@ -55,7 +55,7 @@ public class AddressInfoId implements Serializable{
 		else if(!county.equals(other.county)) 
 			return false;
 		
-		if(zipcode != other.zipcode)
+		if(!zipcode.equals(other.zipcode))
 			return false;
 		
 		return true;

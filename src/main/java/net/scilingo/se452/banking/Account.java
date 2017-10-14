@@ -28,7 +28,7 @@ public class Account implements IAccount {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="ID")
-	private int id;
+	private Integer id;
 	
 	@ManyToOne(optional=false)
 	@JoinColumn(name="CUSTOMER_ID")
@@ -38,7 +38,7 @@ public class Account implements IAccount {
 	Set<Transaction> transactions = new HashSet<Transaction>();
 	
 	@Column(name="BALANCE")
-	private int balance;
+	private Integer balance;
 	
 	@Enumerated(EnumType.ORDINAL)
 	@Column(name="ACCOUNT_TYPE")
@@ -47,12 +47,12 @@ public class Account implements IAccount {
 	
 	
 	@Override
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
 	@Override
-	public int getBalance() {
+	public Integer getBalance() {
 		return balance;
 	}
 
@@ -62,12 +62,12 @@ public class Account implements IAccount {
 	}
 	
 	@Override
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
 	@Override
-	public void setBalance(int balance) {
+	public void setBalance(Integer balance) {
 		this.balance = balance;
 		
 	}
