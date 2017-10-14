@@ -36,6 +36,17 @@ public class CustomerDatabaseTest extends DatabaseTest {
 		assertEquals("Illinois", shannonJMiller.getAddressInfo().getState());
 		assertEquals("Cook", shannonJMiller.getAddressInfo().getCounty());
 		assertEquals(60605, shannonJMiller.getAddressInfo().getZipcode());
+		
+		Customer shannonJMiller2 = getBankingService().getCustomer(shannonJMiller);
+		
+		
+		assertEquals("Shannon",shannonJMiller2.getFirstName());
+		assertEquals("J", shannonJMiller2.getMiddleInitial());
+		assertEquals("Miller", shannonJMiller2.getLastName());	
+		assertEquals("Chicago", shannonJMiller2.getAddressInfo().getCity());
+		assertEquals("Illinois", shannonJMiller2.getAddressInfo().getState());
+		assertEquals("Cook", shannonJMiller2.getAddressInfo().getCounty());
+		assertEquals(60605, shannonJMiller2.getAddressInfo().getZipcode());
 	}
 	
 	@Test 

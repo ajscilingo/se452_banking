@@ -58,6 +58,10 @@ public class BankingService {
 		return this._customerService.getCustomer(firstName, middleInitial, lastName);
 	}
 	
+	public Customer getCustomer(Customer customer) {
+		return this._customerService.getCustomer(customer);
+	}
+	
 	public void deleteCustomer(Customer customer) {
 		this._customerService.deleteCustomer(customer);
 		this._mongoCustomerService.deleteCustomer(customer);

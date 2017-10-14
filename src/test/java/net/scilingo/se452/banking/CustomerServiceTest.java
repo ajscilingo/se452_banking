@@ -7,14 +7,20 @@ import java.util.Random;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+import static org.mockito.Matchers.anyInt;
+import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.times;
 
 import javax.persistence.Query;
 import javax.persistence.EntityManager;
 
+import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -25,6 +31,8 @@ import org.mockito.stubbing.Answer;
 import org.mockito.invocation.InvocationOnMock;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
+
+import com.mysql.jdbc.StringUtils;
 
 import net.scilingo.se452.banking.interfaces.IAddress;
 
@@ -57,28 +65,69 @@ public class CustomerServiceTest {
 		customerService.setEntityManager(entityManager);
 	}
 	
+	@After
+	public void tearDown() {
+		//customerService = null;
+	}
+	
 	@Test
-	public void FindCustomer1(){
+	public void FindCustomer1_HappyPath(){
 		
 		Address mockAddress = buildMockAddress("4740 N. County Line Road", "", "Cook", 60521);
-		Customer mockJohnHSmith = buildMockCustomer("John", "H", "Smith", mockAddress);
+		Customer mockJohnHSmith = buildMockCustomer("John", "H", "Smith", mockAddress, "Hinsdale", "Illinois");
 		when(entityManager.createQuery(queryString)).thenReturn(query);
 		when(customerService.getCustomer("John", "H", "Smith")).thenReturn(mockJohnHSmith);
 		verify(entityManager, times(1)).createQuery(queryString);
 		assertEquals("John", mockJohnHSmith.getFirstName());
 		assertEquals("H", mockJohnHSmith.getMiddleInitial());
 		assertEquals("Smith", mockJohnHSmith.getLastName());
+		assertEquals("Hinsdale", mockJohnHSmith.getAddressInfo().getCity());
+		assertEquals("Illinois", mockJohnHSmith.getAddressInfo().getState());
+		assertEquals("Cook", mockJohnHSmith.getAddressInfo().getCounty());
+		assertEquals(60521, mockJohnHSmith.getAddressInfo().getZipcode());
 		assertNotEquals(0, mockJohnHSmith.getId());
+		
 	}
 	
-	private Customer buildMockCustomer(String firstName, String middleInitial, String lastName, IAddress address){
+	@Test
+	public void FindCustomer2() {
+		Address mockAddress = buildMockAddress("1529 S. State Street", "APT 6-C", "Cook", 60605);
+		Customer mockAnthonyJScilingo =  buildMockCustomer("Anthony", "J", "Scilingo", mockAddress, "Chicago", "Illinois");
+		Customer mockAnthonyJScilingo2 = new Customer();
+		mockAnthonyJScilingo2.setId(mockAnthonyJScilingo.getId());
+		mockAnthonyJScilingo2.setFirstName(mockAnthonyJScilingo.getFirstName());
+		mockAnthonyJScilingo2.setMiddleInitial(mockAnthonyJScilingo.getMiddleInitial());
+		mockAnthonyJScilingo2.setLastName(mockAnthonyJScilingo.getLastName());
+		mockAnthonyJScilingo2.setAddress(mockAddress);
+		mockAnthonyJScilingo2.setAddressInfo(buildMockAddressInfo("Chicago", "Illinois", mockAddress.getCounty(), mockAddress.getZipcode()));
+		when(entityManager.find(Customer.class, mockAnthonyJScilingo.getId())).thenReturn(mockAnthonyJScilingo2);
+		when(customerService.getCustomer(mockAnthonyJScilingo)).thenReturn(mockAnthonyJScilingo2);
+		
+	}
+	
+	@Test
+	public void FindCustomer3_IdIsZero() {
+		Address mockAddress = buildMockAddress("1700 S. State Street", "APT 801", "Cook", 60605);
+		Customer mockPerson =  new Customer();
+		
+		CustomerService spyCustServ = spy(customerService);
+		
+		mockPerson.setFirstName("Jenny");
+		mockPerson.setMiddleInitial("E");
+		mockPerson.setLastName("Jones");
+		mockPerson.setAddress(mockAddress);
+		when(spyCustServ.getCustomer(mockPerson)).thenReturn(null);
+		assertEquals(0, mockPerson.getId());
+	}
+	
+	private Customer buildMockCustomer(String firstName, String middleInitial, String lastName, IAddress address, String city, String state){
 		
 		Customer mockedCustomer = new Customer();
 		mockedCustomer.setFirstName(firstName);
 		mockedCustomer.setLastName(lastName);
 		mockedCustomer.setMiddleInitial(middleInitial);
 		mockedCustomer.setAddress(address);
-		mockedCustomer.setAddressInfo(buildMockAddressInfo("Hinsdale", "Illinois"));
+		mockedCustomer.setAddressInfo(buildMockAddressInfo(city, state, address.getCounty(), address.getZipcode()));
 		mockedCustomer.setId(randomId.nextInt((maxId - minId) + 1) + minId);
 		return mockedCustomer;
 	}
@@ -93,10 +142,12 @@ public class CustomerServiceTest {
 		return mockedAddress;
 	}
 	
-	private AddressInfo buildMockAddressInfo(String city, String state) {
-		AddressInfo mockedAddressInfo = new AddressInfo();
-		mockedAddressInfo.setCity(city);
-		mockedAddressInfo.setState(state);
+	private AddressInfo buildMockAddressInfo(String city, String state, String county, int zipcode) {
+		AddressInfo mockedAddressInfo = spy(new AddressInfo());
+		doReturn(zipcode).when(mockedAddressInfo).getZipcode();
+		doReturn(county).when(mockedAddressInfo).getCounty();
+		doReturn(city).when(mockedAddressInfo).getCity();
+		doReturn(state).when(mockedAddressInfo).getState();
 		return mockedAddressInfo;
 	}
 }
