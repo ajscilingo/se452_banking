@@ -103,7 +103,8 @@ public class AccountServiceTest extends Stubtest {
 	}
 	
 	@Test
-	public void testGetAllAccounts() {
+	public void testGetAllAccounts1() {
+		
 		List<Account> mockedAccounts = buildMockListOfAccounts();
 		when(entityManager.createNamedQuery("getAllAccounts")).thenReturn(query);
 		when(accountService.getAllAccounts()).thenReturn(mockedAccounts);
@@ -113,4 +114,22 @@ public class AccountServiceTest extends Stubtest {
 		assertEquals(4, response.size());
 	}
 	
+	@Test 
+	public void testGetAccount1() {
+		
+		Account mockedAccount = buildCheckingAccountWithTwentyThousandDollars();
+		when(entityManager.find(Account.class, mockedAccount.getId())).thenReturn(mockedAccount);
+		Account response = accountService.getAccount(mockedAccount);
+		verify(entityManager, times(1)).find(Account.class, mockedAccount.getId());
+		assertNotNull(response);
+		assertEquals(mockedAccount, response);
+	}
+	
+	@Test 
+	public void testGetAccount2() {
+		
+		Account mockedAccount = buildAccountWithNoId();
+		Account response = accountService.getAccount(mockedAccount);
+		assertNull(response);
+	}
 }
