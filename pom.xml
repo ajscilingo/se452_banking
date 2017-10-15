@@ -62,6 +62,12 @@
 			<version>${powermock.version}</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.0.1</version>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
@@ -71,6 +77,27 @@
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
+				</configuration>
+			</plugin>
+				<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.0.0</version>
+				<configuration>
+					<webResources>
+                    <resource>
+                        <directory>${project.basedir}/src/main/resources</directory>
+                    </resource>
+                </webResources>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<port>9090</port>
+					<path>/</path>
 				</configuration>
 			</plugin>
 		</plugins>
