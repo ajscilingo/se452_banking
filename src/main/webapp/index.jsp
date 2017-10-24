@@ -18,7 +18,7 @@
 					type="password" class="form-control" name="Password"
 					placeholder="Password" required="" />
 
-				<button class="btn btn-lg btn-primary btn-block" name="Submit"
+				<button name="Submit"
 					value="Login" type="Submit">Login</button>
 			</form>
 		</div>
