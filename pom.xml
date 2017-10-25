@@ -15,18 +15,8 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.eclipse.persistence</groupId>
-			<artifactId>javax.persistence</artifactId>
-			<version>2.2.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.persistence</groupId>
 			<artifactId>org.eclipse.persistence.jpa</artifactId>
 			<version>2.7.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.persistence</groupId>
-			<artifactId>eclipselink</artifactId>
-			<version>2.6.5</version>
 		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
@@ -68,6 +58,11 @@
 			<version>3.0.1</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
@@ -79,16 +74,16 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
-				<plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
 				<version>3.0.0</version>
 				<configuration>
 					<webResources>
-                    <resource>
-                        <directory>${project.basedir}/src/main/resources</directory>
-                    </resource>
-                </webResources>
+						<resource>
+							<directory>${project.basedir}/src/main/resources</directory>
+						</resource>
+					</webResources>
 				</configuration>
 			</plugin>
 			<plugin>

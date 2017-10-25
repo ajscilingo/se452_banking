@@ -56,7 +56,8 @@ public class DatabaseTest
 		
 		MongoClientURI mcURI = new MongoClientURI(mongoURIBuilder.toString());
 		mc = new MongoClient(mcURI);
-		bs = new BankingService(em, mc);
+		//bs = BankingServiceFactory.getBankingService(em, mc);
+		bs = new BankingService(em,mc);
 		
 		Address address = new Address();
 		address.setAddressLine1("1400 S. State");

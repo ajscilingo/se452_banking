@@ -11,7 +11,7 @@
 	<div class="container">
 		<div class="wrapper">
 			<form action="" method="post" name="Login_Form" class="form-signin">
-				<h3 class="form-signin-heading">Welcome Back! Please Sign In</h3>
+				<h3 class="form-signin-heading">Welcome To Bank XYZ</h3>
 				<hr class="colorgraph">
 				<br> <input type="text" class="form-control" name="Username"
 					placeholder="Username" required="" autofocus="" /> <input
@@ -20,6 +20,7 @@
 
 				<button name="Submit"
 					value="Login" type="Submit">Login</button>
+				<a class="register" href="customer.jsp">register</a>
 			</form>
 		</div>
 	</div>

@@ -21,6 +21,7 @@ private EntityManager _entityManager;
 private static final Logger logger = Logger.getLogger(CustomerService.class.getName());
 private AddressInfoService _addressInfoService;
 private static final String queryString = "Select c from Customer c where c.firstName = :firstName and c.middleInitial = :middleInitial and c.lastName = :lastName";
+private static final String queryStringId = "Select c from Customer c where c.id = :id";
 
 	public CustomerService() {
 		
@@ -63,6 +64,13 @@ private static final String queryString = "Select c from Customer c where c.firs
 		q.setParameter("lastName", lastName);
 		
 		return (Customer) q.getSingleResult();
+	}
+	
+	public Customer getCustomer(String id) {
+		Query q = _entityManager.createQuery(queryStringId);
+		q.setParameter("id", Integer.parseInt(id));
+		
+		return (Customer) q.getSingleResult(); 
 	}
 	
 	public List<Customer> getCustomers(String firstName, String middleInitial, String lastName){

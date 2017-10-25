@@ -1,18 +1,22 @@
 package net.scilingo.se452.banking;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Properties;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
-import com.mongodb.MongoCredential;
 
 import net.scilingo.se452.banking.interfaces.IAddress;
 import net.scilingo.se452.banking.interfaces.IAddressInfo;
+import net.scilingo.se452.banking.interfaces.ICustomer;
 import net.scilingo.se452.banking.mongodb.MongoAddress;
 import net.scilingo.se452.banking.mongodb.MongoCustomerService;
+import net.scilingo.se452.banking.mongodb.MongoPropertiesLoader;
 
 public class BankingService {
 	
@@ -23,8 +27,44 @@ public class BankingService {
 	private MongoCustomerService _mongoCustomerService;
 	private final MongoClient _mongoClient;
 	
+	
 	public BankingService() {
-		this(Persistence.createEntityManagerFactory("bankXYZ_PU").createEntityManager(), new MongoClient());
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("bankXYZ_PU");
+		EntityManager entityManager = emf.createEntityManager();
+		
+		Properties mongoProperties = null;
+		
+		try {
+			mongoProperties = MongoPropertiesLoader.getMongoProperties();
+		}
+		catch(IOException e) {
+			System.out.println("Can't find mongoclient.properties");
+			e.printStackTrace();
+		}
+		
+		
+		StringBuilder mongoURIBuilder = new StringBuilder();
+		mongoURIBuilder
+			.append("mongodb://")
+			.append(mongoProperties.get("USER"))
+			.append(":")
+			.append(mongoProperties.getProperty("PASSWORD"))
+			.append("@")
+			.append(mongoProperties.getProperty("HOST"))
+			.append(":")
+			.append(mongoProperties.getProperty("PORT"))
+			.append("/")
+			.append(mongoProperties.getProperty("DATABASE"));
+		
+		MongoClientURI mcURI = new MongoClientURI(mongoURIBuilder.toString());
+		MongoClient mongoClient = new MongoClient(mcURI);
+		
+		this._entityManager = entityManager;
+		this._mongoClient = mongoClient;
+		this._accountService = new AccountService(_entityManager);
+		this._addressInfoService = new AddressInfoService(_entityManager);
+		this._customerService = new CustomerService(_entityManager, _addressInfoService);
+		this._mongoCustomerService = new MongoCustomerService(_mongoClient);
 	}
 	
 	public BankingService(EntityManager entityManager, MongoClient mongoClient) {
@@ -36,10 +76,11 @@ public class BankingService {
 		this._mongoCustomerService = new MongoCustomerService(_mongoClient);
 	}
 	
-	public void createNewCustomer(String firstName, String middleInitial, String lastName, Address address) {
+	public ICustomer createNewCustomer(String firstName, String middleInitial, String lastName, Address address) {
 		Customer newCustomer = (Customer) this._customerService.createCustomer(firstName, middleInitial, lastName, address);
 		MongoAddress mongoAddress = createMongoAddress(newCustomer.getAddress(), newCustomer.getAddressInfo());
 		this._mongoCustomerService.createCustomer(firstName, middleInitial, lastName, mongoAddress);
+		return newCustomer;
 	}
 	
 	public List<Customer> getAllCustomers(){
@@ -56,6 +97,10 @@ public class BankingService {
 	
 	public Customer getCustomer(String firstName, String middleInitial, String lastName){
 		return this._customerService.getCustomer(firstName, middleInitial, lastName);
+	}
+	
+	public Customer getCustomer(String id) {
+		return this._customerService.getCustomer(id);
 	}
 	
 	public Customer getCustomer(Customer customer) {
@@ -100,5 +145,11 @@ public class BankingService {
 		}
 		
 		return mongoAddress;
+	}
+	
+	@Override
+	protected void finalize() throws Throwable {
+		super.finalize();
+		_entityManager.close();
 	}
 }

@@ -23,7 +23,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest ({ CustomerService.class })
-public class CustomerServiceTest extends Stubtest{
+public class CustomerServiceTest extends Stubtest {
 	
 	private static final String queryString = "Select c from Customer c where c.firstName = :firstName and c.middleInitial = :middleInitial and c.lastName = :lastName";
 	private CustomerService customerService;
