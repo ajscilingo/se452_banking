@@ -11,7 +11,6 @@ import com.mysql.jdbc.StringUtils;
 
 import net.scilingo.se452.banking.AccountType;
 import net.scilingo.se452.banking.BankingService;
-import net.scilingo.se452.banking.BankingServiceFactory;
 import net.scilingo.se452.banking.Customer;
 
 public class AccountServlet extends HttpServlet {
@@ -29,7 +28,7 @@ public class AccountServlet extends HttpServlet {
 		if(!StringUtils.isNullOrEmpty(startingBalance) && customer != null) {
 			
 			String strAccountType = req.getParameter("accountType");
-			BankingService bankingService = BankingServiceFactory.getBankingService();
+			BankingService bankingService = new BankingService();
 			AccountType accountType = AccountType.valueOf(strAccountType);
 			
 			int intStartingBalance = Integer.parseInt(startingBalance);

@@ -12,7 +12,6 @@ import com.mysql.jdbc.StringUtils;
 
 import net.scilingo.se452.banking.Address;
 import net.scilingo.se452.banking.BankingService;
-import net.scilingo.se452.banking.BankingServiceFactory;
 import net.scilingo.se452.banking.Customer;
 import net.scilingo.se452.banking.interfaces.ICustomer;
 
@@ -26,7 +25,7 @@ public class CustomerServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		BankingService bankingService = BankingServiceFactory.getBankingService();
+		BankingService bankingService = new BankingService();
 		
 		ICustomer customer;
 		
