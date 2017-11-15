@@ -95,7 +95,6 @@
 							<directory>${project.basedir}/src/main/resources</directory>
 						</resource>
 					</webResources>
-					<warSourceDirectory>/src/main/webapp</warSourceDirectory>
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
 			</plugin>
