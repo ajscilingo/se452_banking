@@ -8,6 +8,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import org.springframework.stereotype.Service;
+
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 
@@ -18,6 +20,7 @@ import net.scilingo.se452.banking.mongodb.MongoAddress;
 import net.scilingo.se452.banking.mongodb.MongoCustomerService;
 import net.scilingo.se452.banking.mongodb.MongoPropertiesLoader;
 
+@Service
 public class BankingService {
 	
 	private final EntityManager _entityManager;

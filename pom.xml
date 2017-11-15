@@ -9,8 +9,7 @@
 	<properties>
 		<powermock.version>1.7.3</powermock.version>
 		<junit.version>4.12</junit.version>
-		<node.version>v8.7.0</node.version>
-		<npm.version>5.5.1</npm.version>
+		<spring.version>4.3.12.RELEASE</spring.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -55,13 +54,25 @@
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
-			<version>3.0.1</version>
+			<version>3.1.0</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
+		</dependency>
+		<!-- Spring Core -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<!--  Spring MVC -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
 		</dependency>
 	</dependencies>
 	<build>
@@ -84,6 +95,8 @@
 							<directory>${project.basedir}/src/main/resources</directory>
 						</resource>
 					</webResources>
+					<warSourceDirectory>/src/main/webapp</warSourceDirectory>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
 			</plugin>
 			<plugin>

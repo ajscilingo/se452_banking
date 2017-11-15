@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.bson.Document;
+import org.springframework.stereotype.Service;
 
 public class MongoCustomerService implements ICustomerService{
 

@@ -10,6 +10,8 @@ import javax.persistence.PersistenceException;
 import javax.persistence.RollbackException;
 import javax.persistence.TransactionRequiredException;
 
+import org.springframework.stereotype.Service;
+
 public class AccountService {
 
 	private EntityManager _entityManager;

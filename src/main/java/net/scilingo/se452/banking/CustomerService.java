@@ -11,6 +11,8 @@ import javax.persistence.Query;
 import javax.persistence.RollbackException;
 import javax.persistence.TransactionRequiredException;
 
+import org.springframework.stereotype.Service;
+
 import net.scilingo.se452.banking.interfaces.IAddress;
 import net.scilingo.se452.banking.interfaces.ICustomer;
 import net.scilingo.se452.banking.interfaces.ICustomerService;
