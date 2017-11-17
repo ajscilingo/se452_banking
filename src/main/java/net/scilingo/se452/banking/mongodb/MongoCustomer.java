@@ -52,13 +52,13 @@ public class MongoCustomer implements ICustomer {
 		this.lastName = lastName;
 	}
 
-	@Override
-	public IAddress getAddress() {
+
+	public MongoAddress getAddress() {
 		return address;
 	}
 
-	@Override
-	public void setAddress(IAddress address) {
+
+	public void setAddress(MongoAddress address) {
 		this.address = (MongoAddress) address;
 	}
 

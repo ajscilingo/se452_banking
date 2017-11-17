@@ -5,6 +5,8 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
+import org.springframework.beans.factory.annotation.Required;
+
 import net.scilingo.se452.banking.interfaces.IAddress;
 
 @Embeddable

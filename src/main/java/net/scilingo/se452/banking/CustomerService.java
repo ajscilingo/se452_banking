@@ -203,4 +203,31 @@ private static final String queryStringId = "Select c from Customer c where c.id
 		
 		return customer;
 	}
+	
+	public Customer createCustomer(Customer customer) {
+		
+		EntityTransaction entityTransaction = null;
+		
+		try {
+			entityTransaction = _entityManager.getTransaction();
+			
+			entityTransaction.begin();
+			_entityManager.persist(customer);
+			entityTransaction.commit();
+			
+			logger.log(Level.INFO, "Creating Customer {0}, {1}, {2}", new String[] {customer.getFirstName(), customer.getMiddleInitial(), customer.getLastName()});
+		}
+		catch(IllegalStateException | IllegalArgumentException | TransactionRequiredException e) {
+			e.printStackTrace();
+			try {
+				entityTransaction.rollback();
+			}
+			catch(IllegalStateException | PersistenceException | NullPointerException inner_exception) {
+				inner_exception.printStackTrace();
+			}
+		}
+		
+		return customer;
+		
+	}
 }

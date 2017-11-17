@@ -44,8 +44,6 @@ public class Account implements IAccount {
 	@Column(name="ACCOUNT_TYPE")
 	private AccountType accountType;
 	
-	
-	
 	@Override
 	public Integer getId() {
 		return id;

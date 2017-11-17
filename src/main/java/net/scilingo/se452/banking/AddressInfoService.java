@@ -1,14 +1,20 @@
 package net.scilingo.se452.banking;
 
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 public class AddressInfoService {
 
 	private EntityManager _entityManager;
 	private static final Logger logger = Logger.getLogger(AddressInfoService.class.getName());
+	private static final String zipcodesForCountyQuery = "Select ai.zipcode from AddressInfo ai where ai.county = :county";
+	private static final String countiesForZipcodeQuery = "Select ai.county from AddressInfo ai where ai.zipcode = :zipcode";
+	private static final String zipcodesQuery = "Select Distinct ai.zipcode from AddressInfo ai order by 1 ASC";
+	private static final String countiesQuery = "Select Distinct ai.county from AddressInfo ai order by 1 ASC";
 	
 	public AddressInfoService(EntityManager entityManager) {
 		this._entityManager = entityManager;
@@ -32,4 +38,27 @@ public class AddressInfoService {
 		return addressInfo;
 	}
 	
+	public List<Integer> getZipcodesForCounty(String county){
+		Query zipcodeQuery = _entityManager.createQuery(zipcodesForCountyQuery);
+		zipcodeQuery.setParameter("county", county);
+		List<Integer> zipcodes = (List<Integer>) zipcodeQuery.getResultList();
+		return zipcodes;
+	}
+	
+	public List<String> getCountiesForZipCode(Integer zipcode){
+		Query countiesQuery = _entityManager.createQuery(countiesForZipcodeQuery);
+		countiesQuery.setParameter("zipcode", zipcode);
+		List<String> counties = (List<String>) countiesQuery.getResultList();
+		return counties;
+	}
+	
+	public List<Integer> getZipcodes(){
+		List<Integer> zipcodes = (List<Integer>) _entityManager.createQuery(zipcodesQuery).getResultList();
+		return zipcodes;
+	}
+	
+	public List<String> getCounties(){
+		List<String> counties = (List<String>) _entityManager.createQuery(countiesQuery).getResultList();
+		return counties;
+	}
 }

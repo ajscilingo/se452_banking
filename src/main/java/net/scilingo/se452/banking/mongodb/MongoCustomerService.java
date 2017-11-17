@@ -60,7 +60,7 @@ public class MongoCustomerService implements ICustomerService{
 		customer.setMiddleInitial(middleInitial);
 		customer.setLastName(lastName);
 
-		customer.setAddress(address);
+		customer.setAddress((MongoAddress)address);
 		
 		logger.log(Level.INFO, "Creating Customer {0} {1} {2} in MongoDB", new String[]{customer.getFirstName(), customer.getMiddleInitial(), customer.getLastName()});
 		

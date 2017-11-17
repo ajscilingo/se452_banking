@@ -35,7 +35,7 @@ public class Stubtest {
 		mockedCustomer.setFirstName(firstName);
 		mockedCustomer.setLastName(lastName);
 		mockedCustomer.setMiddleInitial(middleInitial);
-		mockedCustomer.setAddress(address);
+		mockedCustomer.setAddress((Address)address);
 		mockedCustomer.setAddressInfo(buildMockAddressInfo(city, state, address.getCounty(), address.getZipcode()));
 		mockedCustomer.setId(randomId.nextInt((maxId - minId) + 1) + minId);
 		return mockedCustomer;

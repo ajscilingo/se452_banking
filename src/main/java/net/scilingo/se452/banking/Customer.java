@@ -95,12 +95,12 @@ public class Customer implements ICustomer, Serializable {
 		this.lastName = lastName;
 	}
 
-	public IAddress getAddress() {
+	public Address getAddress() {
 		return this.address;
 	}
 
-	public void setAddress(IAddress address) {
-		this.address = (Address) address;
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 	
 	public Set<Account> getAccounts(){

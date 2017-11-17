@@ -28,6 +28,7 @@ public class BankingService {
 	private CustomerService _customerService;
 	private AddressInfoService _addressInfoService;
 	private MongoCustomerService _mongoCustomerService;
+	private UserCustomerService _userCustomerService;
 	private final MongoClient _mongoClient;
 	
 	
@@ -68,6 +69,7 @@ public class BankingService {
 		this._addressInfoService = new AddressInfoService(_entityManager);
 		this._customerService = new CustomerService(_entityManager, _addressInfoService);
 		this._mongoCustomerService = new MongoCustomerService(_mongoClient);
+		this._userCustomerService = new UserCustomerService(_entityManager);
 	}
 	
 	public BankingService(EntityManager entityManager, MongoClient mongoClient) {
@@ -84,6 +86,16 @@ public class BankingService {
 		MongoAddress mongoAddress = createMongoAddress(newCustomer.getAddress(), newCustomer.getAddressInfo());
 		this._mongoCustomerService.createCustomer(firstName, middleInitial, lastName, mongoAddress);
 		return newCustomer;
+	}
+	
+	public ICustomer createNewCustomer(Customer customer) {
+		Customer newCustomer = (Customer) this._customerService.createCustomer(customer);
+		return newCustomer;
+	}
+	
+	public UserCustomer createNewUserCustomer(UserCustomer userCustomer) {
+		UserCustomer newUserCustomer = this._userCustomerService.createUserCustomer(userCustomer);
+		return newUserCustomer;
 	}
 	
 	public List<Customer> getAllCustomers(){
@@ -108,6 +120,10 @@ public class BankingService {
 	
 	public Customer getCustomer(Customer customer) {
 		return this._customerService.getCustomer(customer);
+	}
+	
+	public Customer getCustomerByUserName(String username) {
+		return this._userCustomerService.getCustomerForUsername(username);
 	}
 	
 	public void deleteCustomer(Customer customer) {
@@ -148,6 +164,14 @@ public class BankingService {
 		}
 		
 		return mongoAddress;
+	}
+	
+	public List<Integer> getAllZipcodes(){
+		return this._addressInfoService.getZipcodes();
+	}
+	
+	public List<String> getAllCounties(){
+		return this._addressInfoService.getCounties();
 	}
 	
 	@Override

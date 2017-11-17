@@ -1,5 +1,9 @@
 package net.scilingo.se452.config;
 
+/***
+ * This take place of the web.xml configuration
+ */
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
