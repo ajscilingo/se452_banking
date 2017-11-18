@@ -16,7 +16,7 @@ public class AccountService {
 
 	private EntityManager _entityManager;
 	private static final Logger logger = Logger.getLogger(AccountService.class.getName());
-
+	
 	public AccountService(EntityManager entityManager) {
 		this._entityManager = entityManager;
 	}

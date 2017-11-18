@@ -98,6 +98,11 @@ public class BankingService {
 		return newUserCustomer;
 	}
 	
+	public UserCustomer getUserCustomer(UserCustomer userCustomer) {
+		UserCustomer currentUserCustomer = this._userCustomerService.getUserCustomer(userCustomer);
+		return currentUserCustomer;
+	}
+	
 	public List<Customer> getAllCustomers(){
 		return this._customerService.getAllCustomers();
 	}

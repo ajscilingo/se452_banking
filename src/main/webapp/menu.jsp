@@ -6,17 +6,19 @@
  
   | &nbsp;
   
-   <a href="${pageContext.request.contextPath}/userInfo">User Info</a>
+   <a href="${pageContext.request.contextPath}/customer/add">User Info</a>
   
   | &nbsp;
   
   <a href="${pageContext.request.contextPath}/admin">Admin</a>
   
-  <c:if test="${pageContext.request.userPrincipal.name != null}">
+   | &nbsp;
+     
+  <a href="${pageContext.request.contextPath}/account/list">Accounts</a>
   
+  <c:if test="${pageContext.request.userPrincipal.name != null}">
      | &nbsp;
      <a href="${pageContext.request.contextPath}/logout">Logout</a>
-     
   </c:if>
   
-</div>
+</div> 

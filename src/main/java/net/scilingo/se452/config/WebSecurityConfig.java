@@ -37,8 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		// /customer/add page requires login as USER or ADMIN.
 		// If no login, it will redirect to /login page.
 		http.authorizeRequests().antMatchers("/customer/add").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
-
-		// For ADMIN only.
+		http.authorizeRequests().antMatchers("/account/list").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
 		http.authorizeRequests().antMatchers("/admin").access("hasRole('ROLE_ADMIN')");
 
 		// When the user has logged in as XX.

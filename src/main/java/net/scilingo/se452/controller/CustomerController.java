@@ -57,7 +57,7 @@ public class CustomerController {
 
 		ModelAndView modelAndView = new ModelAndView();
 
-		// check if user is login
+		// check if user is logged in
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if (!(auth instanceof AnonymousAuthenticationToken)) {
 			UserDetails userDetail = (UserDetails) auth.getPrincipal();
@@ -78,17 +78,25 @@ public class CustomerController {
 	@RequestMapping(path = "/customer/add", method = RequestMethod.POST)
 	public ModelAndView customerAddSubmit(@ModelAttribute final Customer customer) {
 		ModelAndView modelAndView = new ModelAndView();
-		bankingService.createNewCustomer(customer);
+
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		
 		if (!(auth instanceof AnonymousAuthenticationToken)) {
 			UserDetails userDetail = (UserDetails) auth.getPrincipal();
 			String username = userDetail.getUsername();
 			
-			UserCustomer userCustomer = new UserCustomer();
-			userCustomer.setUsername(username);
-			userCustomer.setCustomer(customer);
-			bankingService.createNewUserCustomer(userCustomer);
+			Customer existingCustomer = bankingService.getCustomerByUserName(username);
+			
+			if(existingCustomer != null) {
+				bankingService.updateCustomer(customer);
+			}
+			else {
+				bankingService.createNewCustomer(customer);
+				UserCustomer userCustomer = new UserCustomer();
+				userCustomer.setUsername(username);
+				userCustomer.setCustomer(customer);
+				bankingService.createNewUserCustomer(userCustomer);
+			}
 		}
 		
 		modelAndView.addObject("customer", customer);

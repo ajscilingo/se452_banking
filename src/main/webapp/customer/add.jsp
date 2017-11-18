@@ -48,13 +48,6 @@
 					<c:if test="${empty customer.id}">Create</c:if>
 				</button>
 			</form:form>
-			<c:if test="${not empty customer.id}">
-				<form action="account" method="post" id="addNewAccountForm"
-					name="addNewAccountForm" class="form-signin">
-					<button name="Submit" value="createAcount" type="Submit">Add
-						Account</button>
-				</form>
-			</c:if>
 		</div>
 	</div>
 </body>
