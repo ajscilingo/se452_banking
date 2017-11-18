@@ -132,6 +132,19 @@ public class AccountController {
 		return new ModelAndView("redirect:/account/list");
 	}
 	
+	@RequestMapping(path = "/account/close", method = RequestMethod.POST)
+	public ModelAndView accountCloseSubmit(@ModelAttribute final Account account, Model model) {
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();	
+		if (!(auth instanceof AnonymousAuthenticationToken)) {
+			if(account != null) {
+				bankingService.closeAccount(account);
+			}
+		}
+		
+		return new ModelAndView("redirect:/account/list");
+	}
+	
 	@RequestMapping(path = "/account/add", method = RequestMethod.POST)
 	public String accountAddSubmit(@ModelAttribute final Account account, Model model) {
 		ModelAndView modelAndView = new ModelAndView();

@@ -152,6 +152,10 @@ public class BankingService {
 		this._accountService.saveAccount(account);
 	}
 	
+	public void closeAccount(Account account) {
+		this._accountService.deleteAccount(account);
+	}
+	
 	public void makeDeposit(Deposit deposit) {
 		this._accountService.makeDeposit(deposit);
 	}
@@ -184,11 +188,23 @@ public class BankingService {
 	}
 	
 	public List<Integer> getAllZipcodes(){
-		return this._addressInfoService.getZipcodes();
+		//return this._addressInfoService.getZipcodes();
+		
+		// This is a stop-gap measure to prevent errors
+		// Would have added in ajax to properly do cascading menus
+		// if I had more time
+		
+		return this._addressInfoService.getZipcodesForCounty("Cook");
 	}
 	
 	public List<String> getAllCounties(){
-		return this._addressInfoService.getCounties();
+		//return this._addressInfoService.getCounties();
+		
+		// This is a stop-gap measure to prevent errors
+		// Would have added in ajax to properly do cascading menus
+		// if I had more time
+		
+		return this._addressInfoService.getOnlyCookCounty();
 	}
 	
 	@Override

@@ -1,5 +1,6 @@
 package net.scilingo.se452.banking;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -49,6 +50,15 @@ public class AddressInfoService {
 		Query countiesQuery = _entityManager.createQuery(countiesForZipcodeQuery);
 		countiesQuery.setParameter("zipcode", zipcode);
 		List<String> counties = (List<String>) countiesQuery.getResultList();
+		return counties;
+	}
+	
+	// This is a stop-gap measure to prevent errors
+	// Would have added in ajax to properly do cascading menus
+	// if I had more time
+	public List<String> getOnlyCookCounty(){
+		List<String> counties = new ArrayList<String>();
+		counties.add("Cook");
 		return counties;
 	}
 	

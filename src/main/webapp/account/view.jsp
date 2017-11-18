@@ -30,7 +30,7 @@
 			</table>
 		</div>
 		<form:form method="POST" class="form-signin" action="deposit"
-			id="accountViewForm" commandName="deposit">
+			id="accountDepositForm" commandName="deposit">
 			<h3 class="form-signin-heading">Make Deposit/Withdraw</h3>
 			<hr class="colorgraph">
 			<br>
@@ -39,12 +39,14 @@
 			<button name="Submit" type="Submit">Deposit</button>
 		</form:form>
 		<form:form method="POST" class="form-signin" action="withdraw"
-			id="accountViewForm" commandName="withdraw">
-			<input type="hidden" name="customerId" value="${customer.id}" />
-			<input type="hidden" name="accountId" value="${account.id}" />
+			id="accountWithdrawForm" commandName="withdraw">
 			<input type="text" class="form-control" name="amount"
 				placeholder="Withdraw Amount" required="" autofocus="" />
 			<button name="Submit" type="Submit">Withdraw</button>
+		</form:form>
+		<form:form method="POST" class="form-signin" action="close"
+		id="accountCloseForm" commandName="account">
+		<button name="Submit" type="Submit">Close Account</button>
 		</form:form>
 	</div>
 </body>
