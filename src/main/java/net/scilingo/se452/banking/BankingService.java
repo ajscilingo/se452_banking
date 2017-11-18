@@ -151,7 +151,19 @@ public class BankingService {
 	public void updateAccount(Account account) {
 		this._accountService.saveAccount(account);
 	}
+	
+	public void makeDeposit(Deposit deposit) {
+		this._accountService.makeDeposit(deposit);
+	}
+	
+	public void makeWithdraw(Withdraw withdraw) {
+		this._accountService.makeWithdraw(withdraw);
+	}
 
+	public Account getAccount(Account account) {
+		return this._accountService.getAccount(account);
+	}
+	
 	private MongoAddress createMongoAddress(IAddress address, IAddressInfo addressInfo) {
 		
 		MongoAddress mongoAddress = new MongoAddress();

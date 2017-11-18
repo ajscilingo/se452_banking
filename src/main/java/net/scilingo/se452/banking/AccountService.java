@@ -137,13 +137,25 @@ public class AccountService {
 			}
 		}
 	}
-
-	private void logTransaction(Account account) {
-		
+	
+	public void makeDeposit(Deposit deposit) {
+		Account accountToUpdate = (Account) deposit.getAccount();
+		accountToUpdate.getDeposits().add(deposit);
+		accountToUpdate.setBalance(accountToUpdate.getBalance() + deposit.getAmount());
+		saveAccount(accountToUpdate);
+	}
+	
+	public void makeWithdraw(Withdraw withdraw) {
+		Account accountToUpdate = (Account) withdraw.getAccount();
+		accountToUpdate.getWithdraws().add(withdraw);
+		accountToUpdate.setBalance(accountToUpdate.getBalance() - withdraw.getAmount());
+		saveAccount(accountToUpdate);
+	}
+	
+	private void logTransaction(Account account) {	
 		Transaction transaction = new Transaction();
 		transaction.setAccount(account);
 		transaction.setAmount(account.getBalance());
 		account.transactions.add(transaction);
-		
 	}
 }

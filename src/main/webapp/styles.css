@@ -8,9 +8,10 @@ table {
 	width: 100%;
 }
 
-td#viewAccountColumn{
+td.center{
 	text-align: center;
 }
+
 
 a {
 	text-decoration: none;

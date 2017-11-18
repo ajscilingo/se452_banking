@@ -37,6 +37,12 @@ public class Account implements IAccount {
 	@OneToMany(fetch=FetchType.EAGER, mappedBy="account", cascade=CascadeType.ALL, orphanRemoval=true)
 	Set<Transaction> transactions = new HashSet<Transaction>();
 	
+	@OneToMany(fetch=FetchType.EAGER, mappedBy="account", cascade=CascadeType.ALL, orphanRemoval=true)
+	Set<Deposit> deposits = new HashSet<Deposit>();
+	
+	@OneToMany(fetch=FetchType.EAGER, mappedBy="account", cascade=CascadeType.ALL, orphanRemoval=true)
+	Set<Withdraw> withdraws = new HashSet<Withdraw>();
+	
 	@Column(name="BALANCE")
 	private Double balance;
 	
@@ -93,4 +99,23 @@ public class Account implements IAccount {
 		this.transactions = transactions;
 	}
 	
+	@Override
+	public Set<Deposit> getDeposits() {
+		return deposits;
+	}
+
+	@Override
+	public void setDeposits(Set<Deposit> deposits) {
+		this.deposits = deposits;
+	}
+
+	@Override
+	public Set<Withdraw> getWithdraws() {
+		return withdraws;
+	}
+
+	@Override
+	public void setWithdraws(Set<Withdraw> withdraws) {
+		this.withdraws = withdraws;
+	}
 }
