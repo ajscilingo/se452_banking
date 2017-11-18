@@ -5,11 +5,11 @@ public interface ITransaction {
 
 	public int getId();
 	public IAccount getAccount();
-	public int getAmount();
+	public Double getAmount();
 	public java.sql.Date getTime();
 	
 	public void setId(int id);
 	public void setAccount(IAccount account);
-	public void setAmount(int amount);
+	public void setAmount(Double amount);
 	
 }

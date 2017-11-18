@@ -136,15 +136,15 @@ public class BankingService {
 		this._mongoCustomerService.deleteCustomer(customer);
 	}
 	
-	public void createNewCheckingAccount(Customer customer, int balance) {
+	public void createNewCheckingAccount(Customer customer, double balance) {
 		this._accountService.createNewAccount(customer, balance, AccountType.CHECKING);
 	}
 	
-	public void createNewSavingsAccount(Customer customer, int balance) {
+	public void createNewSavingsAccount(Customer customer, double balance) {
 		this._accountService.createNewAccount(customer, balance, AccountType.SAVINGS);
 	}
 	
-	public void createNewCDAccount(Customer customer, int balance) {
+	public void createNewCDAccount(Customer customer, double balance) {
 		this._accountService.createNewAccount(customer, balance, AccountType.CD);
 	}
 	

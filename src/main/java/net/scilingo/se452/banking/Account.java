@@ -38,7 +38,7 @@ public class Account implements IAccount {
 	Set<Transaction> transactions = new HashSet<Transaction>();
 	
 	@Column(name="BALANCE")
-	private Integer balance;
+	private Double balance;
 	
 	@Enumerated(EnumType.ORDINAL)
 	@Column(name="ACCOUNT_TYPE")
@@ -50,7 +50,7 @@ public class Account implements IAccount {
 	}
 
 	@Override
-	public Integer getBalance() {
+	public Double getBalance() {
 		return balance;
 	}
 
@@ -65,7 +65,7 @@ public class Account implements IAccount {
 	}
 
 	@Override
-	public void setBalance(Integer balance) {
+	public void setBalance(Double balance) {
 		this.balance = balance;
 		
 	}

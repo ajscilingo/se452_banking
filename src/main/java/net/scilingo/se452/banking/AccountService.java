@@ -61,7 +61,7 @@ public class AccountService {
 			entityTransaction.commit();
 			logger.log(Level.INFO, "Updating {0} account for {1} with balance of {2}",
 					new String[] { account.getAccountType().toString(), account.getCustomer().toString(),
-							Integer.toString(account.getBalance()) });
+							Double.toString(account.getBalance()) });
 
 		} catch (IllegalStateException | IllegalArgumentException e) {
 
@@ -93,7 +93,7 @@ public class AccountService {
 				logger.log(Level.INFO, "Deleting {0} account for {1} with balance of {2}",
 						new String[] { accountToDelete.getAccountType().toString(),
 								accountToDelete.getCustomer().toString(),
-								Integer.toString(accountToDelete.getBalance()) });
+								Double.toString(accountToDelete.getBalance()) });
 				entityTransaction.begin();
 				_entityManager.remove(accountToDelete);
 				entityTransaction.commit();
@@ -108,7 +108,7 @@ public class AccountService {
 		}
 	}
 
-	public void createNewAccount(Customer customer, int balance, AccountType accountType) {
+	public void createNewAccount(Customer customer, double balance, AccountType accountType) {
 
 		EntityTransaction entityTransaction = null;
 		Account account = new Account();
@@ -127,7 +127,7 @@ public class AccountService {
 			_entityManager.persist(account);
 			entityTransaction.commit();
 			logger.log(Level.INFO, "Creating new {0} account for {1} with starting balance of {2}",
-					new String[] { accountType.toString(), customer.toString(), Integer.toString(balance) });
+					new String[] { accountType.toString(), customer.toString(), Double.toString(balance) });
 		} catch (IllegalStateException | IllegalArgumentException | TransactionRequiredException e) {
 			e.printStackTrace();
 			try {

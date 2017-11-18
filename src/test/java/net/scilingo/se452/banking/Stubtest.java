@@ -60,7 +60,7 @@ public class Stubtest {
 		return mockedAddressInfo;
 	}
 	
-	protected Account buildMockAccount(Integer balance, AccountType accountType) {
+	protected Account buildMockAccount(Double balance, AccountType accountType) {
 		Account mockedAccount = new Account();
 		mockedAccount.setAccountType(accountType);
 		mockedAccount.setBalance(balance);
@@ -80,22 +80,22 @@ public class Stubtest {
 	}
 	
 	protected Account buildCheckingAccountWithTwentyThousandDollars() {
-		return buildMockAccount(20000, AccountType.CHECKING);
+		return buildMockAccount(20000.00, AccountType.CHECKING);
 	}
 	
 	protected Account buildAccountWithNoId() {
 		Account mockedAccount = new Account();
 		mockedAccount.setAccountType(AccountType.SAVINGS);
-		mockedAccount.setBalance(5000);
+		mockedAccount.setBalance(5000.00);
 		return mockedAccount;
 	}
 	
 	protected List<Account> buildMockListOfAccounts(){
 		List<Account> mockedAccounts = new ArrayList<Account>();
-		mockedAccounts.add(buildMockAccount(400, AccountType.CHECKING));
-		mockedAccounts.add(buildMockAccount(500, AccountType.CD));
-		mockedAccounts.add(buildMockAccount(800, AccountType.RESERVED));
-		mockedAccounts.add(buildMockAccount(9000, AccountType.SAVINGS));
+		mockedAccounts.add(buildMockAccount(400.00, AccountType.CHECKING));
+		mockedAccounts.add(buildMockAccount(500.00, AccountType.CD));
+		mockedAccounts.add(buildMockAccount(800.00, AccountType.RESERVED));
+		mockedAccounts.add(buildMockAccount(9000.00, AccountType.SAVINGS));
 		return mockedAccounts;
 	}
 }

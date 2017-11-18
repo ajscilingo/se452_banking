@@ -43,7 +43,7 @@ public class AccountServiceTest extends Stubtest {
 		accountService.createNewAccount(mockedCustomer, 20000, AccountType.CHECKING);
 		Account mockedAccount = mockedCustomer.getAccounts().iterator().next();
 		verify(entityManager, times(1)).persist(mockedAccount);
-		assertEquals(Integer.valueOf(20000), mockedAccount.getBalance());
+		assertEquals(Double.valueOf(20000.0), mockedAccount.getBalance());
 		assertEquals(AccountType.CHECKING, mockedAccount.getAccountType());
 		assertEquals(mockedCustomer, mockedAccount.getCustomer());
 	}
@@ -92,8 +92,8 @@ public class AccountServiceTest extends Stubtest {
 		mockedAccount.setCustomer(mockedCustomer);
 		when(entityManager.getTransaction()).thenReturn(entityTransaction);
 		when(entityManager.find(Account.class, mockedAccount.getId())).thenReturn(mockedAccount);
-		assertEquals(Integer.valueOf(20000),mockedAccount.getBalance());
-		mockedAccount.setBalance(mockedAccount.getBalance() + 10000);
+		assertEquals(Double.valueOf(20000.0),mockedAccount.getBalance());
+		mockedAccount.setBalance(mockedAccount.getBalance() + 10000.0);
 		accountService.saveAccount(mockedAccount);
 		verify(entityManager, times(1)).find(Account.class, mockedAccount.getId());
 		verify(entityManager, times(1)).getTransaction();

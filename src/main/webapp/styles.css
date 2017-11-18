@@ -8,6 +8,16 @@ table {
 	width: 100%;
 }
 
+td#viewAccountColumn{
+	text-align: center;
+}
+
+a {
+	text-decoration: none;
+	color: white;
+	font-family: sans-serif;
+}
+
 .wrapper {
 	margin-top: 90px;
 	margin-bottom: 20px;
@@ -97,8 +107,6 @@ button {
 	width: 100%;
 }
 
-a.register {
-	text-decoration: none;
+a.blue {
 	color: #66bae9;
-	font-family: sans-serif;
 }

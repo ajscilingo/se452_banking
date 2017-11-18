@@ -35,7 +35,7 @@
 											value="${customerAccount.accountType.displayName}" /></td>
 									<td><fmt:formatNumber value="${customerAccount.balance}"
 											type="currency" /></td>
-									<td><a href="">View Account</a></td>
+									<td id="viewAccountColumn"><a class="blue" href="/account/view?id=${customerAccount.id}">View Account</a></td>
 								</tr>
 							</c:forEach>
 						</table>

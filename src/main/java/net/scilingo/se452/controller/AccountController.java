@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -48,6 +49,11 @@ public class AccountController {
 		return modelAndView;
 	}
 
+	@RequestMapping(path = "/account/view", method = RequestMethod.GET)
+	public void viewAccount(@RequestParam("id") Integer id, Model model) {
+	
+	}
+	
 	@RequestMapping(path = "/account/add", method = RequestMethod.GET)
 	public ModelAndView accountAdd() {
 	
@@ -69,7 +75,7 @@ public class AccountController {
 	}
 	
 	@RequestMapping(path = "/account/add", method = RequestMethod.POST)
-	public ModelAndView accountAddSubmit(@ModelAttribute final Account account, Model model) {
+	public String accountAddSubmit(@ModelAttribute final Account account, Model model) {
 		ModelAndView modelAndView = new ModelAndView();
 		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();	
@@ -103,7 +109,7 @@ public class AccountController {
 				modelAndView.addObject("account", account);
 			}
 		}
-		return modelAndView;
+		return "redirect:/account/list";
 	}
 	
 }

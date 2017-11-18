@@ -20,12 +20,12 @@ public class AccountDatabaseTest extends DatabaseTest {
 		for(Account a : shannonMiller.getAccounts()) {
 			if(a.getAccountType().equals(AccountType.SAVINGS)) {
 				savingsAccount = a;
-				savingsAccount.setBalance(200000);
+				savingsAccount.setBalance(200000.00);
 				getBankingService().updateAccount(savingsAccount);
 			}
 		}
 		
-		assertEquals(Integer.valueOf(200000), savingsAccount.getBalance());
+		assertEquals(Double.valueOf(200000.00), savingsAccount.getBalance());
 		
 	}
 	
@@ -39,7 +39,7 @@ public class AccountDatabaseTest extends DatabaseTest {
 		
 		Customer janeEJones = getBankingService().getCustomer("Jane", "E", "Jones");
 		Account checkingAccount = null;
-		int previousBalance = 0;
+		double previousBalance = 0.00;
 		
 		for(Account a: janeEJones.getAccounts()) {
 			if(a.getAccountType().equals(AccountType.CHECKING)) {
@@ -50,7 +50,7 @@ public class AccountDatabaseTest extends DatabaseTest {
 			}
 		}
 		
-		assertEquals(Integer.valueOf(previousBalance + 10), checkingAccount.getBalance());	
+		assertEquals(Double.valueOf(previousBalance + 10), checkingAccount.getBalance());	
 	}
 	
 }

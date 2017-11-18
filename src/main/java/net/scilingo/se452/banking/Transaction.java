@@ -31,7 +31,7 @@ public class Transaction implements ITransaction, Serializable {
 	private Account account;
 	
 	@Column(name="AMOUNT")
-	private int amount;
+	private Double amount;
 	
 	@Column(name="TIME", insertable=false, updatable=false, nullable=false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 	private Date time;
@@ -47,7 +47,7 @@ public class Transaction implements ITransaction, Serializable {
 	}
 
 	@Override
-	public int getAmount() {
+	public Double getAmount() {
 		return amount;
 	}
 
@@ -67,7 +67,7 @@ public class Transaction implements ITransaction, Serializable {
 	}
 
 	@Override
-	public void setAmount(int amount) {
+	public void setAmount(Double amount) {
 		this.amount = amount;
 	}
 
