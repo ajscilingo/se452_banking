@@ -78,7 +78,7 @@ public class AccountController {
 				
 				//AccountType accountType = account.getAccountType();
 				//Defaulting to Checking
-				AccountType accountType = AccountType.CHECKING;
+				AccountType accountType = account.getAccountType();
 				UserDetails userDetail = (UserDetails) auth.getPrincipal();
 				String username = userDetail.getUsername();
 				Customer customer = bankingService.getCustomerByUserName(username);

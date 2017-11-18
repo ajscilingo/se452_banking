@@ -24,8 +24,14 @@
 					<input type="hidden" name="customerId" value="${customer.id}" />
 					<input type="hidden" name="accountId" value="${account.id}" />
 					<input type="text" class="form-control" name="balance"
-						placeholder="Starting Balance"  required=""
-						autofocus="" value="${account.balance}" />
+						placeholder="Starting Balance" required="" autofocus=""
+						value="${account.balance}" />
+					<form:select path="accountType" name="accountType"
+						value="${account.accountType}">
+						<option value="CD">CD</option>
+						<option value="CHECKING">Checking</option>
+						<option value="SAVINGS">Savings</option>
+					</form:select>
 					<button name="Submit" type="Submit">Open Account</button>
 				</c:if>
 			</form:form>

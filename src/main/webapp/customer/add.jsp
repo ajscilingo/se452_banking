@@ -26,7 +26,7 @@
 					placeholder="First Name" required="" autofocus=""
 					value="${customer.firstName}" /> <input type="text"
 					class="form-control" name="middleInitial"
-					placeholder="Middle Initial" required="" autofocus="" maxlength="1"
+					placeholder="Middle Initial" autofocus="" maxlength="1"
 					value="${customer.middleInitial}" /> <input type="text"
 					class="form-control" name="lastName" placeholder="Last Name"
 					required="" value="${customer.lastName}" />
